@@ -34,7 +34,10 @@ namespace LinkedList
             list.InsertLast(30);
             list.InsertLast(70);
             list.Display();
-            list.Search(30);
+            // list.Search(30);
+
+            list.InsertAtAfterValue(30, 40);//UC8
+            list.Display();
 
             Console.ReadLine();
         }

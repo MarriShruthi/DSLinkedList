@@ -126,21 +126,49 @@ namespace LinkedList
             return count;
         }
 
+        public void InsertAtAfterValue(int after, int data)
+        {
+
+            if (head == null)
+            {
+                Console.WriteLine("Linked list is Empty");
+            }
+            else
+            {
+                Node temp = head;
+
+                while (temp != null)
+                {
+                    if (temp.data == after)
+                    {
+                        Node node = new Node(data);
+                        node.next = temp.next;
+                        temp.next = node;
+                        break;
+                    }
+                    temp = temp.next;
+                }
+                Console.WriteLine($"Successfully added Element {after} After {data}");
+
+
+            }
+        }
+
         internal void Display()
         {
-            Node temp = this.head;
-            if (temp == null)
-            {
-                Console.WriteLine("Linked list is empty");
-                return;
+             Node temp = this.head;
+             if (temp == null)
+             {
+                  Console.WriteLine("Linked list is empty");
+                  return;
+             }
+             while (temp != null)
+             {
+                 Console.Write(temp.data + " ");
+                 temp = temp.next; //temp=null
+             }
+                Console.WriteLine();
             }
-            while (temp != null)
-            {
-                Console.Write(temp.data + " ");
-                temp = temp.next; //temp=null
-            }
-            Console.WriteLine();
-        }
 
     }
 }
