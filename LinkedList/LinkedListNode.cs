@@ -25,6 +25,16 @@ namespace LinkedList
             }
             Console.WriteLine("{0} inserted into the linked list", node.data);
         }
+
+        public void InsertFront(int new_data)
+        {
+            Node new_node = new Node(new_data);//create new node then new node point to the head of the linked list
+            new_node.next = this.head;// add any node at the front point head 
+            this.head = new_node; // The Previous Head is now the second node of linked List the new node is added at the
+            Console.WriteLine($"Inserted into front {new_node.data}"); //print
+
+        }
+
         internal void Display()
         {
             Node temp = this.head;
