@@ -40,6 +40,39 @@ namespace LinkedList
             InsertLast(value);
         }
 
+        public Node InsertAtParticularPosition(int position, int data)
+        {
+            if (position < 1)
+            {
+                Console.WriteLine($"Invalid Position{ position}");
+            }
+            if (position == 1)
+            {
+                var newNode = new Node(data); //create object and passing data
+                newNode.next = this.head;
+                head = newNode;
+            }
+            else
+            {
+                while (position-- != 0)
+                {
+                    if (position == 1)
+                    {
+                        Node node = new Node(data);
+                        node.next = this.head.next;
+                        head.next = node;
+                        break;
+                    }
+                    head = head.next;
+                }
+                if (position != 1)
+                {
+                    Console.WriteLine($"Position Out Of Range{ position}");
+                }
+            }
+            return head;
+        }
+
         internal void Display()
         {
             Node temp = this.head;
