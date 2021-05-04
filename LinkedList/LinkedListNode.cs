@@ -35,6 +35,11 @@ namespace LinkedList
 
         }
 
+        public void Appending(int value)
+        {
+            InsertLast(value);
+        }
+
         internal void Display()
         {
             Node temp = this.head;

@@ -15,9 +15,13 @@ namespace LinkedList
            // list.InsertLast(30);
            // list.InsertLast(70);
 
-            list.InsertFront(70); // Adding data in list //UC2
-            list.InsertFront(30);// Adding data in list //UC2
-            list.InsertFront(56);
+           // list.InsertFront(70); // Adding data in list //UC2
+           // list.InsertFront(30);// Adding data in list //UC2
+           // list.InsertFront(56);
+
+            list.Appending(56);// Adding data in list //UC3
+            list.Appending(30);// Adding data in list //UC3
+            list.Appending(70);
 
             list.Display();
             Console.ReadLine();
