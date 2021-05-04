@@ -152,10 +152,53 @@ namespace LinkedList
 
 
             }
+
         }
 
-        internal void Display()
+        public void DeleteElement(int data)
         {
+            bool flag = false;
+            int count = 0;
+
+            if (head == null)
+                Console.WriteLine("List is Empty");
+            else
+            {
+                Node temp = head;
+                Node previousNode = null;
+                while (temp != null)
+                {
+
+                    if (temp.data == data)
+                    {
+                        if (count == 1)
+                        {
+                            head = temp.next;
+                        }
+                        previousNode.next = temp.next;
+
+                        flag = true;
+
+                        break;
+                    }
+                    previousNode = temp;
+                    temp = temp.next;
+
+                }
+                if (!flag)
+                {
+                    Console.WriteLine($"{data} Element Not Found in Linked List");
+                }
+                else
+                {
+                    Console.WriteLine($"Successfully Delete Element {data}");
+
+                }
+            }
+        }
+
+            internal void Display()
+            {
              Node temp = this.head;
              if (temp == null)
              {

@@ -33,10 +33,13 @@ namespace LinkedList
             list.InsertLast(56);
             list.InsertLast(30);
             list.InsertLast(70);
-            list.Display();
-            // list.Search(30);
+           // list.Display();
+            // list.Search(30);//UC7
 
             list.InsertAtAfterValue(30, 40);//UC8
+            list.Display();
+
+            list.DeleteElement(40);//UC9
             list.Display();
 
             Console.ReadLine();
