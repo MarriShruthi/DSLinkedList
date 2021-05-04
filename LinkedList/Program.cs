@@ -28,7 +28,8 @@ namespace LinkedList
             list.InsertAtParticularPosition(2, 30);//UC4
             list.Display();
 
-            list.DeleteFirstNode(); // Adding data in list //UC5
+            //list.DeleteFirstNode();  //UC5
+            list.DeleteLastNode(); //UC6
             list.Display();
 
             Console.ReadLine();
