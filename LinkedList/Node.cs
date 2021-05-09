@@ -9,7 +9,11 @@ namespace LinkedList
     public class Node
     {
         public int data; // integer value store data
-        public Node next; 
+        public Node next;
+
+        public Node()
+        {
+        }
 
         public Node(int d)
         {

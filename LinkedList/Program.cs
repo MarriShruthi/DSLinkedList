@@ -11,37 +11,24 @@ namespace LinkedList
         static void Main(string[] args)
         {
             LinkedListNode list = new LinkedListNode();
-           //list.InsertLast(56);
-           //list.InsertLast(30);
-           //list.InsertLast(70);
-
-            // list.InsertFront(70); // Adding data in list //UC2
-            // list.InsertFront(30);// Adding data in list //UC2
-            // list.InsertFront(56);
-
-            //list.Appending(56);// Adding data in list //UC3
-            //list.Appending(30);// Adding data in list //UC3
-            //list.Appending(70);
-
-            //list.InsertFront(70); // Adding data in list //UC4            
-            //list.InsertFront(56); // Adding data in list //UC4
-            //list.InsertAtParticularPosition(2, 30);//UC4
-
-            //list.DeleteFirstNode();  //UC5
-            //list.DeleteLastNode(); //UC6
-
-            list.InsertLast(56);
-            list.InsertLast(30);
-            list.InsertLast(70);
-           // list.Display();
-            // list.Search(30);//UC7
-
-            list.InsertAtAfterValue(30, 40);//UC8
+            //list.InsertData(56);
+            //list.InsertData(30);
+            // list.InsertData(70);
+            //Calling InsertFront 
+            list.InserFront(56);
+            list.InserFront(30);
+            list.InserFront(40);
+            list.InserFront(70);
             list.Display();
-
-            list.DeleteElement(40);//UC9
+            //list.InsertAtParticularPosition(2, 30);
+            //Console.WriteLine("\nAdd after 30 : 40");
+            // list.InsertAfter(3 ,40);
+            //list.Search(30);
+            //list.DeleteAnyData(30);
+            Console.WriteLine("After Sorting");
+            list.head = list.LinkedListSorted(list.head);
             list.Display();
-
+            Console.WriteLine("Count of LinkedList" + list.Count());
             Console.ReadLine();
         }
     }

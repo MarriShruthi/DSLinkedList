@@ -8,154 +8,143 @@ namespace LinkedList
 {
     class LinkedListNode
     {
+        //Creating a node Equals to head, which will be pointing to the first element in linkedlist
         public Node head;
-        public void InsertLast(int data)
+        public void InsertData(int new_data)
         {
-            Node node = new Node(data);
+            //Creating a object of node and adding data in node
+            Node new_node = new Node(new_data);
+            //if Head Equals to Null Then Add data 
+            //fills the first position in linkedlist, when head points to nothing
+
             if (this.head == null)
-                this.head = node;
+            {
+                this.head = new_node;
+            }
+            else
+            {
+                Node lastNode = GetLastNode();
+                lastNode.next = new_node;
+            }
+
+        }
+        public Node GetLastNode()
+        {
+            Node temp = this.head;
+            while (temp.next != null)
+            {
+                temp = temp.next;
+            }
+            return temp;
+        }
+        public void InserFront(int new_data)
+        {
+            //object is created for adding data in node class
+            Node new_node = new Node(new_data);
+            //head address is added in newly created node, hence the initial head is coming at last, and data is inserted at left
+            new_node.next = this.head;
+            this.head = new_node;
+            // Console.WriteLine("inserted into front" + new_node);
+
+        }
+
+        //Creating Method For Deleteing Element
+        internal Node DeleteFirstNode()
+        {
+            if (this.head == null)
+            {
+                return null;
+            }
+            this.head = this.head.next;
+            return this.head;
+        }
+        //Creating Deleting LSst Node Method
+        public Node DeleteLastNode()
+        {
+            Node newNode = this.head;
+            if (this.head == null)
+            {
+                return null;
+            }
+            if (this.head.next == null)
+            {
+                this.head = null;
+                return null;
+            }
+            while (newNode.next.next != null)
+            {
+                newNode = newNode.next;
+            }
+            newNode.next = null;
+            return newNode;
+        }
+        //Adding Searching Method
+        public bool Search(int input)
+        {
+            bool flag = false;
+            if (head == null)
+                Console.WriteLine("List is Empty");
             else
             {
                 Node temp = head;
-                while (temp.next != null)
+                while (temp != null)
                 {
-                    temp = temp.next;
-                }
-                temp.next = node;
-            }
-            Console.WriteLine("{0} inserted into the linked list", node.data);
-        }
-
-        public void InsertFront(int new_data)
-        {
-            Node new_node = new Node(new_data);//create new node then new node point to the head of the linked list
-            new_node.next = this.head;// add any node at the front point head 
-            this.head = new_node; // The Previous Head is now the second node of linked List the new node is added at the
-            Console.WriteLine($"Inserted into front {new_node.data}"); //print
-
-        }
-
-        public void Appending(int value)
-        {
-            InsertLast(value);
-        }
-
-        public Node InsertAtParticularPosition(int position, int data)
-        {
-            if (position < 1)
-            {
-                Console.WriteLine($"Invalid Position{ position}");
-            }
-            if (position == 1)
-            {
-                var newNode = new Node(data); //create object and passing data
-                newNode.next = this.head;
-                head = newNode;
-            }
-            else
-            {
-                while (position-- != 0)
-                {
-                    if (position == 1)
+                    if (temp.data == input)
                     {
-                        Node node = new Node(data);
-                        node.next = this.head.next;
-                        head.next = node;
+                        Console.WriteLine("The element is present");
+                        flag = true;
                         break;
                     }
-                    head = head.next;
-                }
-                if (position != 1)
-                {
-                    Console.WriteLine($"Position Out Of Range{ position}");
-                }
-            }
-            return head;
-        }
-
-        public void DeleteFirstNode()
-        {
-            Node temp = this.head;
-            if (temp == null)
-            {
-                Console.WriteLine("Linked List is Empty");
-                return;
-            }
-            head = temp.next;
-            Console.WriteLine($"Successfully Delete First Element {temp.data}");
-
-        }
-
-        public void DeleteLastNode()
-        {
-            Node temp = this.head;
-            if (temp == null)
-            {
-                Console.WriteLine("Linked List is Empty");
-                return;
-            }
-            else
-            {
-                while (temp.next.next != null)
-                {
                     temp = temp.next;
                 }
-
-                Console.WriteLine($"Successfully Delete Last Element {temp.next.data}");
-                temp.next = null;
+                if (!flag)
+                    Console.WriteLine("The Element is Absent");
             }
-
+            return flag;
         }
-
-        public int Search(int value)
+        //Adding InsertAfter Method
+        public bool InsertAfter(int data, int after)
         {
-            int count = 0;
-            Node temp = this.head;
-            while (temp != null)
-            {
-                if (temp.data == value)
-                {
-                    Console.WriteLine($"{value} Searching Element Present in Linked List");
-                    return count;
-                }
-
-                temp = temp.next;
-                count++;
-            }
-            Console.WriteLine($"{value} Element Not Found in Linked List");
-            return count;
-        }
-
-        public void InsertAtAfterValue(int after, int data)
-        {
-
+            bool flag = false;
             if (head == null)
-            {
-                Console.WriteLine("Linked list is Empty");
-            }
+                Console.WriteLine("List is Empty");
             else
             {
                 Node temp = head;
-
                 while (temp != null)
                 {
                     if (temp.data == after)
                     {
-                        Node node = new Node(data);
-                        node.next = temp.next;
-                        temp.next = node;
+                        Node newNode = new Node(data);
+                        newNode.next = temp.next;
+                        temp.next = newNode;
+                        flag = true;
                         break;
                     }
                     temp = temp.next;
                 }
-                Console.WriteLine($"Successfully added Element {after} After {data}");
-
-
+                if (!flag)
+                    Console.WriteLine("The Element is Absent");
             }
+            return flag;
+        }
+        //Adding Method Count 
+        public int Count()
+        {
+            int count = 0;
 
+            Node temp = head;
+            while (temp != null)
+            {
+                temp = temp.next;
+                count++;
+            }
+            Console.WriteLine($"Linked List Count is {count}");
+            return count;
         }
 
-        public void DeleteElement(int data)
+        //Adding Delete Method Delete 
+        public bool DeleteAnyData(int data)     //delete data
         {
             bool flag = false;
             int count = 0;
@@ -168,50 +157,122 @@ namespace LinkedList
                 Node previousNode = null;
                 while (temp != null)
                 {
-
+                    count++;
                     if (temp.data == data)
                     {
                         if (count == 1)
                         {
                             head = temp.next;
                         }
-                        previousNode.next = temp.next;
-
+                        else
+                        {
+                            previousNode.next = temp.next;
+                        }
                         flag = true;
-
                         break;
                     }
                     previousNode = temp;
                     temp = temp.next;
-
                 }
                 if (!flag)
+                    Console.WriteLine("The Element is Absent");
+            }
+            return flag;
+        }
+        //Adding Method Size
+        public int Size()   //specify size
+        {
+            int count = 0;
+
+            Node temp = head;
+            while (temp != null)
+            {
+                temp = temp.next;
+                count++;
+            }
+
+            return count;
+        }
+        //for sorting
+        public Node LinkedListSorted(Node head)
+        {
+            if (head == null || head.next == null)
+            {
+                return head;
+            }
+            Node temp = head;
+            Node slow = head;
+            Node fast = head;
+            while (fast != null && fast.next != null)
+            {
+                temp = slow;
+                slow = slow.next;
+                fast = fast.next.next;
+
+            }
+            temp.next = null;
+            Node leftside = LinkedListSorted(head);
+            Node rightside = LinkedListSorted(slow);
+            return Merge(leftside, rightside);
+        }
+        //for merging
+        public Node Merge(Node l1, Node l2)
+        {
+            Node sorted_temp = new Node();
+            Node current_node = sorted_temp;
+
+            while (l1 != null && l2 != null)
+            {
+                if (l1.data < l2.data)
                 {
-                    Console.WriteLine($"{data} Element Not Found in Linked List");
+                    current_node.next = l1;
+
+                    l1 = l1.next;
                 }
                 else
                 {
-                    Console.WriteLine($"Successfully Delete Element {data}");
+                    current_node.next = l2;
 
+                    l2 = l2.next;
                 }
+                current_node = current_node.next;
             }
+
+            if (l1 != null)
+            {
+                current_node.next = l1;
+                l1 = l1.next;
+            }
+
+            if (l2 != null)
+            {
+                current_node.next = l2;
+                l2 = l2.next;
+            }
+
+            return sorted_temp.next;
+
         }
 
-            internal void Display()
-            {
-             Node temp = this.head;
-             if (temp == null)
-             {
-                  Console.WriteLine("Linked list is empty");
-                  return;
-             }
-             while (temp != null)
-             {
-                 Console.Write(temp.data + " ");
-                 temp = temp.next; //temp=null
-             }
-                Console.WriteLine();
-            }
 
+        //Creating Dispaly Method
+        internal void Display()
+        {
+            Node temp = this.head;
+            if (temp == null)
+            {
+                Console.WriteLine("Linked list is empty");
+                return;
+            }
+            else
+            {
+                while (temp.next != null)
+                {
+                    Console.Write(temp.data + "-->>");
+                    temp = temp.next;
+                }
+                Console.WriteLine(temp.data);
+            }
+        }
     }
 }
